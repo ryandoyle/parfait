@@ -1,12 +1,11 @@
 language: java
 
-addons:
-  apt:
-    sources:
-    - pcp
-    - sourceline: 'deb https://dl.bintray.com/pcp/trusty main'
-      key_url: 'https://bintray.com/user/downloadSubjectPublicKey?username=pcp'
-    packages:
-    - pcp
+dist: trusty
+sudo: required
+
+before_install:
+  - wget -qO - https://bintray.com/user/downloadSubjectPublicKey?username=pcp | sudo apt-key add -
+  - echo "deb https://dl.bintray.com/pcp/trusty trusty main" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get -qq update
 
 script: pcp && mvn -B -V clean install verify
