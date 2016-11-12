@@ -9,4 +9,4 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y pcp
 
-script: pcp && mvn -B -V clean install verify
+script: pcp && pminfo -f mmv && mvn -B -V clean install verify
