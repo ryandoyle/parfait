@@ -1,3 +1,12 @@
 language: java
 
-script: mvn -B -V clean install
+addons:
+  apt:
+    sources:
+    - pcp
+    - sourceline: 'deb https://dl.bintray.com/pcp/trusty main'
+      key_url: 'https://bintray.com/user/downloadSubjectPublicKey?username=pcp'
+    packages:
+    - pcp
+
+script: pcp && mvn -B -V clean install verify
