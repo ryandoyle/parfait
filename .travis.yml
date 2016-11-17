@@ -10,5 +10,8 @@ before_install:
   - sudo apt-get install -y pcp
   - pcp
   - pminfo -f mmv
+  - ls -l /var/lib/pcp/
+  - ls -l /var/lib/pcp/tmp/
+  - ls -l /var/lib/pcp/tmp/mmv
 
-script: pcp && pminfo -f mmv && mvn -B -V clean install verify
+script: pcp && pminfo -f mmv && mvn -version #-B -V clean install verify
