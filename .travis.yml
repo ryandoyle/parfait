@@ -10,7 +10,8 @@ before_install:
   - sudo apt-get install -y pcp
   - pcp
   - pminfo -f mmv
-  - echo | sudo /var/lib/pcp/pmdas/mmv/Install
+  - sudo touch /var/lib/pcp/pmdas/mmv/.NeedInstall
+  - sudo service pcp restart
   - ls -l /var/lib/pcp/
   - ls -l /var/lib/pcp/tmp/
   - ls -l /var/lib/pcp/tmp/mmv
