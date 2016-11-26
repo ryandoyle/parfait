@@ -1,5 +1,6 @@
 package io.pcp.parfait.dxm.semantics;
 
+import static java.lang.String.format;
 import static systems.uom.unicode.CLDR.BIT;
 import static systems.uom.unicode.CLDR.BYTE;
 import static tec.units.ri.AbstractConverter.IDENTITY;
@@ -67,6 +68,7 @@ public final class UnitMapping {
     }
 
     public static int getDimensions(Unit<?> unit, String name) {
+        System.out.println("XXX: UNIT IS " + unit);
         if (unit == null) {
             return 0;
         }
@@ -79,6 +81,7 @@ public final class UnitMapping {
         PcpScale<?> unitScale = UnitScale.UNIT;
 
         UnitMapping mapping = findUnitMapping(unit);
+        System.out.println("XXX: UNITMAPPING IS " + mapping);
 
         if (mapping == null) {
             LOG.warn("No mapping found for unit " + unit + " of metric " + name
@@ -92,6 +95,8 @@ public final class UnitMapping {
             timeScale = mapping.getScale(TimeScale.class);
             unitScale = mapping.getScale(UnitScale.class);
         }
+        System.out.println(format("XXX: unitScale:%s, timeScale:%s, spaceScale:%s, unitDimension:%s, timeDimension:%s, spaceDimension%s",
+                unitScale, timeScale, spaceScale, unitDimension, timeDimension, spaceDimension));
         return assembleDimensions(unitScale, timeScale, spaceScale, unitDimension, timeDimension,
                 spaceDimension);
     }
